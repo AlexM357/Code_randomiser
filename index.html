@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Generator v1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="card" aria-labelledby="app-title">
+      <h1 id="app-title">Генератор паролей</h1>
+      <p class="subtitle">v1 — простой генератор для быстрых и безопасных паролей</p>
+
+      <form id="password-form" class="form">
+        <label class="field">
+          <span>Длина пароля</span>
+          <input
+            id="length"
+            name="length"
+            type="number"
+            min="6"
+            max="32"
+            value="12"
+          >
+        </label>
+
+        <fieldset class="options">
+          <legend>Набор символов</legend>
+
+          <label class="checkbox">
+            <input id="lowercase" name="lowercase" type="checkbox" checked>
+            <span>Строчные буквы (a-z)</span>
+          </label>
+
+          <label class="checkbox">
+            <input id="uppercase" name="uppercase" type="checkbox" checked>
+            <span>Заглавные буквы (A-Z)</span>
+          </label>
+
+          <label class="checkbox">
+            <input id="numbers" name="numbers" type="checkbox" checked>
+            <span>Цифры (0-9)</span>
+          </label>
+
+          <label class="checkbox">
+            <input id="symbols" name="symbols" type="checkbox">
+            <span>Специальные символы (!@#$%^&*)</span>
+          </label>
+        </fieldset>
+
+        <button class="button" type="submit">Сгенерировать пароль</button>
+      </form>
+
+      <label class="field result-field">
+        <span>Результат</span>
+        <div class="result-row">
+          <input id="result" type="text" readonly placeholder="Здесь появится пароль">
+          <button id="copy-button" class="button button-secondary" type="button">Скопировать</button>
+        </div>
+      </label>
+
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script src="generator.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

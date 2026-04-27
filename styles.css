@@ -1,0 +1,125 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.app {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.card {
+  width: min(100%, 420px);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.subtitle {
+  margin: 0 0 20px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.form,
+.field,
+.options {
+  display: grid;
+  gap: 12px;
+}
+
+.field span,
+.options legend {
+  font-weight: 600;
+}
+
+input[type="number"],
+input[type="text"] {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 15px;
+}
+
+.options {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.checkbox {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #1f2937;
+}
+
+.button-secondary {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.button-secondary:hover {
+  background: #d1d5db;
+}
+
+.result-field {
+  margin-top: 20px;
+}
+
+.result-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.message {
+  min-height: 20px;
+  margin: 14px 0 0;
+  font-size: 14px;
+  color: #b91c1c;
+}
+
+.message.success {
+  color: #047857;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 20px;
+  }
+
+  .result-row {
+    grid-template-columns: 1fr;
+  }
+}
