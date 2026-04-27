@@ -9,6 +9,12 @@
 <body>
   <main class="app">
     <section class="card" aria-labelledby="app-title">
+      <div class="toolbar">
+        <button id="theme-toggle" class="button button-secondary theme-toggle" type="button" aria-pressed="false">
+          Темная тема
+        </button>
+      </div>
+
       <h1 id="app-title">Генератор паролей</h1>
       <p class="subtitle">v1 — простой генератор для быстрых и безопасных паролей</p>
 
@@ -59,6 +65,16 @@
           <button id="copy-button" class="button button-secondary" type="button">Скопировать</button>
         </div>
       </label>
+
+      <section class="strength" aria-labelledby="strength-title">
+        <div class="strength-header">
+          <span id="strength-title">Сила пароля</span>
+          <span id="strength-label" class="strength-label">Не определена</span>
+        </div>
+        <div class="strength-bar" aria-hidden="true">
+          <div id="strength-fill" class="strength-fill"></div>
+        </div>
+      </section>
 
       <p id="message" class="message" role="status" aria-live="polite"></p>
     </section>

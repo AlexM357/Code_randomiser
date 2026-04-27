@@ -1,7 +1,7 @@
 // Модуль генерации пароля отделен от UI, чтобы логику было проще
 // тестировать, переиспользовать и поддерживать.
 (function () {
-  var CHARSETS = {
+  const CHARSETS = {
     lowercase: "abcdefghijklmnopqrstuvwxyz",
     uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     numbers: "0123456789",
@@ -9,7 +9,7 @@
   };
 
   function buildCharacterPool(options) {
-    var pool = "";
+    let pool = "";
 
     if (options.lowercase) {
       pool += CHARSETS.lowercase;
@@ -47,7 +47,7 @@
   }
 
   function generatePassword(length, options) {
-    var validationError = validatePasswordOptions(length, options);
+    const validationError = validatePasswordOptions(length, options);
 
     if (validationError) {
       return {
@@ -56,11 +56,11 @@
       };
     }
 
-    var pool = buildCharacterPool(options);
-    var password = "";
+    const pool = buildCharacterPool(options);
+    let password = "";
 
-    for (var index = 0; index < length; index += 1) {
-      var randomIndex = Math.floor(Math.random() * pool.length);
+    for (let index = 0; index < length; index += 1) {
+      const randomIndex = Math.floor(Math.random() * pool.length);
       password += pool.charAt(randomIndex);
     }
 
@@ -70,8 +70,73 @@
     };
   }
 
+  function getPasswordStrength(password, options) {
+    if (!password) {
+      return {
+        score: 0,
+        label: "Не определена",
+        width: "0%",
+        color: "#ef4444"
+      };
+    }
+
+    let score = 0;
+    const typesCount = [
+      options.lowercase,
+      options.uppercase,
+      options.numbers,
+      options.symbols
+    ].filter(Boolean).length;
+
+    if (password.length >= 8) {
+      score += 1;
+    }
+
+    if (password.length >= 12) {
+      score += 1;
+    }
+
+    if (typesCount >= 2) {
+      score += 1;
+    }
+
+    if (typesCount >= 3) {
+      score += 1;
+    }
+
+    if (typesCount === 4 || password.length >= 16) {
+      score += 1;
+    }
+
+    if (score <= 2) {
+      return {
+        score: score,
+        label: "Слабый",
+        width: "33%",
+        color: "#ef4444"
+      };
+    }
+
+    if (score <= 4) {
+      return {
+        score: score,
+        label: "Средний",
+        width: "66%",
+        color: "#f59e0b"
+      };
+    }
+
+    return {
+      score: score,
+      label: "Сильный",
+      width: "100%",
+      color: "#10b981"
+    };
+  }
+
   window.PasswordGenerator = {
     generatePassword: generatePassword,
-    validatePasswordOptions: validatePasswordOptions
+    validatePasswordOptions: validatePasswordOptions,
+    getPasswordStrength: getPasswordStrength
   };
 })();
